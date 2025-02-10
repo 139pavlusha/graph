@@ -1,0 +1,61 @@
+.graph-menu {
+  position: absolute;
+  z-index: 9999;
+  top: 10px;
+  left: 20px;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.graph-menu__item {
+  color: black;
+  padding: 5px 10px;
+  display: flex;
+  border-right: 1px solid black;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.graph-menu__item:hover {
+  transform: scale(1.02);
+}
+
+.graph-menu__item--selected {
+  color: white;
+  background-color: #2a2a2a;
+}
+
+.graph-menu__item--last {
+  border-right: 0;
+}
+
+.graph-menu__label {
+  margin-left: 5px;
+}
+
+.graph-menu__hover-container {
+  position: absolute;
+  top: 100%; /* directly below parent item */
+  left: 0;
+  min-width: 100%; /* match or exceed the parent width to avoid gaps */
+  background-color: white;
+  border: 1px solid black;
+  z-index: 999; /* ensure it’s on top if needed */
+  box-sizing: border-box;
+}
+
+.graph-menu__hover-item {
+  color: black;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  padding: 8px 12px;
+}
+
+.graph-menu__hover-item--last {
+  border-bottom: 0;
+}

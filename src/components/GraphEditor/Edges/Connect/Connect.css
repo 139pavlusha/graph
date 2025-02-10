@@ -1,0 +1,158 @@
+.connect-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  width: 280px;
+}
+
+.connect-modal__title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.connect-modal__label {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.connect-modal__select {
+  width: 50px;
+  text-align: center;
+}
+
+.connect-modal__container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.connect-modal__orientations {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: fit-content;
+  margin-bottom: 8px;
+  width: "100%";
+}
+
+.connect-modal__orientation {
+  color: black;
+  padding: 0 10px;
+  display: flex;
+  border-right: 1px solid black;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 33%;
+}
+
+.connect-modal__orientation:hover {
+  transform: scale(1.05);
+}
+
+.connect-modal__orientation--selected {
+  color: white;
+  background-color: #2a2a2a;
+}
+
+.connect-modal__orientation--last {
+  border-right: 0;
+}
+
+.connect-modal__orientation-text {
+  margin: 0 5px;
+}
+
+.connect-modal__button {
+  margin-top: 10px;
+  cursor: pointer;
+  border: 1px solid black;
+  color: white;
+  background-color: #2a2a2a;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.connect-modal__button:hover {
+  color: black;
+  background-color: #fff;
+}
+
+.connect-modal__weight {
+  width: 100%;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.connect-modal__weight-options {
+  padding: 5px 0;
+  color: black;
+  display: flex;
+  border-right: 1px solid black;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 50%;
+}
+
+.connect-modal__weight-options:hover {
+  transform: scale(1.05);
+}
+
+.connect-modal__weight-options--selected {
+  color: white;
+  background-color: #2a2a2a;
+}
+
+.connect-modal__weight-options--last {
+  border-right: 0;
+}
+
+.connect-modal__weight-container {
+  width: 100%;
+  color: black;
+  margin: 10px 0 20px;
+}
+
+.connect-modal__weight-label {
+  font-size: 18px;
+}
+
+.connect-modal__weight-input {
+  width: 50px;
+  margin-left: 10px;
+}
+
+.connect-modal__weight-range {
+  width: 100%;
+  -webkit-appearance: none;
+  background-color: transparent;
+}
+
+.connect-modal__weight-range::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #ccc;
+  border-radius: 2px;
+}
+.connect-modal__weight-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: black;
+  border-radius: 50%;
+  margin-top: -6px;
+  cursor: pointer;
+}
+.connect-modal__weight-range:focus {
+  outline: none;
+}

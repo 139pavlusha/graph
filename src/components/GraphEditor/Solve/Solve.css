@@ -1,0 +1,45 @@
+.connect-modal__result {
+  margin-top: 20px;
+}
+
+.connect-modal__path {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.connect-modal__path-item {
+  display: flex;
+  align-items: center;
+}
+
+.connect-modal__node {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.connect-modal__path-arrow {
+  margin: 0 5px;
+  width: fit-content;
+  position: relative;
+}
+
+.connect-modal__path-weight {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: -3px;
+  left: 0;
+}
+
+.connect-modal__subtitle {
+  font-weight: 600;
+  font-size: 18px;
+}
