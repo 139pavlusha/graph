@@ -1,6 +1,7 @@
 {
   "name": "graph",
   "version": "0.1.0",
+  "homepage": "https://139pavlusha.github.io/graph",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -21,8 +22,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "cp build/index.html build/404.html",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +49,7 @@
   "devDependencies": {
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
-    "@types/react-katex": "^3.0.4"
+    "@types/react-katex": "^3.0.4",
+    "gh-pages": "^6.3.0"
   }
 }

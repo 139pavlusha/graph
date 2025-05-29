@@ -18,7 +18,7 @@ export const App = () => {
   const [error, setError] = useState('')
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/graph'>
       <Snackbar
         style={{ zIndex: 99999 }}
         open={!!error}

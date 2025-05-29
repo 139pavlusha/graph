@@ -45,7 +45,7 @@ export const Solve = ({ algorithmType, shapes, edges, onCloseSolve, setError }: 
         if (detectEdgeType(edges) === 'fuzzy') {
             const payload = { edges, shapes, fromNode, toNode, algorithmType, gridSize }
             localStorage.setItem('resultData', JSON.stringify(payload))
-            window.open('/result', '_blank', 'noopener')
+            window.open('/graph/result', '_blank', 'noopener')
             return
         }
 
