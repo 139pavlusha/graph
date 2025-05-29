@@ -37,7 +37,7 @@ export const EdgeContextMenu = ({
         <>
             {contextMenu.visible && <div className="node-context" style={{ top: contextMenu.y, left: contextMenu.x }}>
                 <div className="node-context__button node-context__button--last" onClick={() => handleDeleteEdge(contextMenu.edgeId)}>
-                    Delete
+                    Видалити
                 </div>
             </div>}
             <Modal isOpen={connectionModal} onClose={onConnectModalClose}>

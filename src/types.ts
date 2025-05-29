@@ -17,6 +17,7 @@ export type EdgeData = {
     from: number
     to: number
     orientation: boolean
+    fuzzy: number[]
     weight: number | null
 }
 

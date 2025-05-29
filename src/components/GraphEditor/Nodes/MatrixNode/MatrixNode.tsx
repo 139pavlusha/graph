@@ -60,24 +60,24 @@ export const MatrixNode = ({ onDone }: IProps) => {
 
     return (
         <div className="node-matrix">
-            <label className="node-matrix__label">Enter size of your matrix</label>
+            <label className="node-matrix__label">Уведіть розмір матриці</label>
             <input className="node-matrix__input" min={2} max={12} type="number" value={n} onChange={onSizeChange} />
 
             <div className='connect-modal__weight'>
                 <div onClick={() => setOrientation(true)} className={`connect-modal__weight-options ${orientation ? 'connect-modal__weight-options--selected' : ''}`}>
-                    <p className='connect-modal__weight-text'>Oriented</p>
+                    <p className='connect-modal__weight-text'>Орієнтований</p>
                 </div>
                 <div onClick={() => setOrientation(false)} className={`connect-modal__weight-options connect-modal__weight-options--last ${!orientation ? 'connect-modal__weight-options--selected' : ''}`}>
-                    <p className='connect-modal__weight-text'>Unoriented</p>
+                    <p className='connect-modal__weight-text'>Неорієнтований</p>
                 </div>
             </div>
 
             <div className='connect-modal__weight'>
                 <div onClick={() => setIsWeight(true)} className={`connect-modal__weight-options ${isWeight ? 'connect-modal__weight-options--selected' : ''}`}>
-                    <p className='connect-modal__weight-text'>Add weight</p>
+                    <p className='connect-modal__weight-text'>Додати вагу</p>
                 </div>
                 <div onClick={() => setIsWeight(false)} className={`connect-modal__weight-options connect-modal__weight-options--last ${!isWeight ? 'connect-modal__weight-options--selected' : ''}`}>
-                    <p className='connect-modal__weight-text'>No weight</p>
+                    <p className='connect-modal__weight-text'>Без ваги</p>
                 </div>
             </div>
 
@@ -121,7 +121,7 @@ export const MatrixNode = ({ onDone }: IProps) => {
                     )
                 })}
             </div>
-            <div className="connect-modal__button" onClick={() => onDone(matrix, orientation, isWeight)}>Create</div>
+            <div className="connect-modal__button" onClick={() => onDone(matrix, orientation, isWeight)}>Створити</div>
         </div>
     )
 }

@@ -15,26 +15,34 @@ interface IProps {
     onConnectModalClose: () => void
 }
 
+const isFuzzyChecker = (arr: number[]) => {
+    if (arr[0] === arr[1] && arr[1] === arr[2] && arr[2] === 0) {
+        return false
+    }
+    return true
+}
+
 export const Connect = ({ shapes, edges, edgeCount, setEdges, setEdgeCount, onConnectModalClose, setError }: IProps) => {
     const [type, setType] = useState(0)
-    const [isWeight, setIsWeight] = useState(false)
+    const [isWeight, setIsWeight] = useState('fuzzy')
     const [weight, setWeight] = useState<number>(1)
+    const [fuzzy, setFuzzy] = useState<number[]>([0, 0, 0])
     const [selectedNodeA, setSelectedNodeA] = useState<number>(shapes[0].id)
     const [selectedNodeB, setSelectedNodeB] = useState<number>(shapes[1].id)
 
     const handleConnectNodes = () => {
         if (selectedNodeA === selectedNodeB) {
-            setError('You can not create connection between the same node')
+            setError("Ви не можете з'єднати одну й ту саму вершину")
             return
         }
         const exist = edges.filter(e => (e.from === selectedNodeA && e.to === selectedNodeB) || (e.from === selectedNodeB && e.to === selectedNodeA))
         if (exist.length) {
-            setError('This nodes already connected')
+            setError("Ці вершини вже з'єднані")
             return
         }
 
         if (isWeight && Math.abs(weight) > 999) {
-            setError('Edge weigth shound be in range [-999; 999]')
+            setError('Вага ребра повинна бути в діапазоні [-999; 999]')
             return
         }
 
@@ -45,7 +53,8 @@ export const Connect = ({ shapes, edges, edgeCount, setEdges, setEdgeCount, onCo
                 from: selectedNodeA,
                 to: selectedNodeB,
                 orientation: false,
-                weight: isWeight ? (weight || null) : null
+                fuzzy: isFuzzyChecker(fuzzy) ? fuzzy : [],
+                weight: isWeight === 'yes' ? (weight || null) : null
             }
         } else if (type === 1) {
             newEdge = {
@@ -53,7 +62,8 @@ export const Connect = ({ shapes, edges, edgeCount, setEdges, setEdgeCount, onCo
                 from: selectedNodeA,
                 to: selectedNodeB,
                 orientation: true,
-                weight: isWeight ? (weight || null) : null
+                fuzzy: isFuzzyChecker(fuzzy) ? fuzzy : [],
+                weight: isWeight === 'yes' ? (weight || null) : null
             }
         } else {
             newEdge = {
@@ -61,9 +71,11 @@ export const Connect = ({ shapes, edges, edgeCount, setEdges, setEdgeCount, onCo
                 from: selectedNodeB,
                 to: selectedNodeA,
                 orientation: true,
-                weight: isWeight ? (weight || null) : null
+                fuzzy: isFuzzyChecker(fuzzy) ? fuzzy : [],
+                weight: isWeight === 'yes' ? (weight || null) : null
             }
         }
+
         setEdges(prev => [...prev, newEdge])
         setEdgeCount(prev => prev + 1)
         onConnectModalClose()
@@ -76,12 +88,19 @@ export const Connect = ({ shapes, edges, edgeCount, setEdges, setEdgeCount, onCo
         }
     }
 
+    const handleFuzzyChange = (e: React.ChangeEvent<HTMLInputElement>, pos: number) =>
+        setFuzzy(prev => {
+            const next = [...prev]
+            next[pos] = Number(e.target.value)
+            return next
+        })
+
     return (
         <div className="connect-modal">
-            <h3 className="connect-modal__title">Choose nodes to connect</h3>
+            <h3 className="connect-modal__title">Оберіть вершини, які хочете з'єднати</h3>
 
             <div className='connect-modal__container'>
-                <label className="connect-modal__label">Node A: </label>
+                <label className="connect-modal__label">Вершина A: </label>
                 <select
                     className='connect-modal__select'
                     value={selectedNodeA}
@@ -99,7 +118,7 @@ export const Connect = ({ shapes, edges, edgeCount, setEdges, setEdgeCount, onCo
             </div>
 
             <div className='connect-modal__container'>
-                <label className="connect-modal__label">Node B: </label>
+                <label className="connect-modal__label">Вершина B: </label>
                 <select
                     className='connect-modal__select'
 
@@ -135,8 +154,8 @@ export const Connect = ({ shapes, edges, edgeCount, setEdges, setEdgeCount, onCo
                 </div>
             </div>
 
-            {isWeight && <div className='connect-modal__weight-container'>
-                <label className='connect-modal__weight-label'>Edge weight</label>
+            {isWeight === 'yes' && <div className='connect-modal__weight-container'>
+                <label className='connect-modal__weight-label'>Додати вагу</label>
                 <input
                     className='connect-modal__weight-input'
                     type='number'
@@ -155,16 +174,41 @@ export const Connect = ({ shapes, edges, edgeCount, setEdges, setEdgeCount, onCo
                 </div>
             </div>}
 
+            {isWeight === 'fuzzy' && <div className='connect-modal__weight-container'>
+                <label className='connect-modal__weight-label'>Додати вагу</label>
+                <input
+                    className='connect-modal__weight-input'
+                    type='number'
+                    value={fuzzy[0]}
+                    onChange={(e) => handleFuzzyChange(e, 0)}
+                />
+                <input
+                    className='connect-modal__weight-input'
+                    type='number'
+                    value={fuzzy[1]}
+                    onChange={(e) => handleFuzzyChange(e, 1)}
+                />
+                <input
+                    className='connect-modal__weight-input'
+                    type='number'
+                    value={fuzzy[2]}
+                    onChange={(e) => handleFuzzyChange(e, 2)}
+                />
+            </div>}
+
             <div className='connect-modal__weight'>
-                <div onClick={() => setIsWeight(true)} className={`connect-modal__weight-options ${isWeight ? 'connect-modal__weight-options--selected' : ''}`}>
-                    <p className='connect-modal__weight-text'>Add weight</p>
+                <div onClick={() => setIsWeight('yes')} className={`connect-modal__weight-options ${isWeight === 'yes' ? 'connect-modal__weight-options--selected' : ''}`}>
+                    <p className='connect-modal__weight-text'>Додати вагу</p>
                 </div>
-                <div onClick={() => setIsWeight(false)} className={`connect-modal__weight-options connect-modal__weight-options--last ${!isWeight ? 'connect-modal__weight-options--selected' : ''}`}>
-                    <p className='connect-modal__weight-text'>No weight</p>
+                <div onClick={() => setIsWeight('no')} className={`connect-modal__weight-options connect-modal__weight-options--last ${isWeight === 'no' ? 'connect-modal__weight-options--selected' : ''}`}>
+                    <p className='connect-modal__weight-text'>Без ваги</p>
+                </div>
+                <div onClick={() => setIsWeight('fuzzy')} className={`connect-modal__weight-options connect-modal__weight-options--last ${isWeight === 'fuzzy' ? 'connect-modal__weight-options--selected' : ''}`}>
+                    <p className='connect-modal__weight-text'>Нечітка вага</p>
                 </div>
             </div>
 
-            <div className="connect-modal__button" onClick={handleConnectNodes}>Connect</div>
+            <div className="connect-modal__button" onClick={handleConnectNodes}>З'єднати</div>
         </div>
     )
 }

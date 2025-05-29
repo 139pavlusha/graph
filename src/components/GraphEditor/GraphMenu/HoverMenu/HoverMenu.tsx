@@ -38,8 +38,8 @@ export const HoverMenu = ({
     if (id === 0) {
         return (
             <div className='graph-menu__hover-container'>
-                <p onClick={() => handleAddNode(false)} className='graph-menu__hover-item'>Manual</p>
-                <p onClick={() => handleAddNode(true)} className='graph-menu__hover-item graph-menu__hover-item--last'>Matrix</p>
+                <p onClick={() => handleAddNode(false)} className='graph-menu__hover-item'>Вручну</p>
+                <p onClick={() => handleAddNode(true)} className='graph-menu__hover-item graph-menu__hover-item--last'>Матриця</p>
             </div>
         )
     }
@@ -58,9 +58,9 @@ export const HoverMenu = ({
     if (id === 7) {
         return (
             <div className='graph-menu__hover-container'>
-                <p onClick={() => handleAlgorithm(0)} className='graph-menu__hover-item'>Dijkstra</p>
-                <p onClick={() => handleAlgorithm(1)} className='graph-menu__hover-item'>Floyd Warshall</p>
-                <p onClick={() => handleAlgorithm(2)} className='graph-menu__hover-item graph-menu__hover-item--last'>Bellman–Ford</p>
+                <p onClick={() => handleAlgorithm(0)} className='graph-menu__hover-item'>Дейкстра</p>
+                <p onClick={() => handleAlgorithm(1)} className='graph-menu__hover-item'>Флойд-Уоршал</p>
+                <p onClick={() => handleAlgorithm(2)} className='graph-menu__hover-item graph-menu__hover-item--last'>Белман-Форд</p>
             </div>
         )
     }

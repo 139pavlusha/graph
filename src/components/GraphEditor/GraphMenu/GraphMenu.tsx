@@ -7,7 +7,6 @@ import { DragSvg } from './images/DragSvg'
 import { ExportSvg } from './images/ExportSvg'
 import { ImportSvg } from './images/ImportSvg'
 import { ZoomSvg } from './images/ZoomSvg'
-import { CustomizeSvg } from './images/CustomizeSvg'
 import { useState } from 'react'
 import { HoverMenu } from './HoverMenu/HoverMenu'
 
@@ -18,14 +17,13 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-    { id: 0, icon: AddCircleSvg, label: 'Add' },
-    { id: 1, icon: ZoomSvg, label: 'Zoom' },
-    { id: 2, icon: DragSvg, label: 'Drag' },
-    { id: 3, icon: ConnectSvg, label: 'Connect' },
-    { id: 4, icon: ImportSvg, label: 'Import' },
-    { id: 5, icon: ExportSvg, label: 'Export' },
-    { id: 6, icon: CustomizeSvg, label: 'Customize' },
-    { id: 7, icon: AlgorithmSvg, label: 'Algorithm' },
+    { id: 0, icon: AddCircleSvg, label: 'Додати' },
+    { id: 1, icon: ZoomSvg, label: 'Масштаб' },
+    { id: 2, icon: DragSvg, label: 'Перетягнути' },
+    { id: 3, icon: ConnectSvg, label: "З'єднати" },
+    { id: 4, icon: ImportSvg, label: 'Імпорт' },
+    { id: 5, icon: ExportSvg, label: 'Експорт' },
+    { id: 7, icon: AlgorithmSvg, label: 'Алгоритми' },
 ]
 
 interface IProps {

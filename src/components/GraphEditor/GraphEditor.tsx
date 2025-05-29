@@ -8,19 +8,33 @@ import { Edges } from './Edges/Edges'
 import { EdgeContextMenu } from './Edges/EdgeContextMenu'
 import { Import } from './Import/Export'
 import { Solve } from './Solve/Solve'
+import { Point } from 'framer-motion'
 
 interface IProps {
+    stageRef: React.RefObject<any>
+    shapes: ShapeData[]
+    setShapes: React.Dispatch<React.SetStateAction<ShapeData[]>>
+    count: number
+    setCount: React.Dispatch<React.SetStateAction<number>>
+    edges: EdgeData[]
+    setEdges: React.Dispatch<React.SetStateAction<EdgeData[]>>
+    edgeCount: number
+    setEdgeCount: React.Dispatch<React.SetStateAction<number>>
+    stagePos: Point
+    setStagePos: React.Dispatch<React.SetStateAction<Point>>
+    zoom: number
+    setZoom: React.Dispatch<React.SetStateAction<number>>
     setError: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const GraphEditor = ({ setError }: IProps) => {
-    const stageRef = useRef<any>(null)
-
-    const [shapes, setShapes] = useState<ShapeData[]>([])
-    const [count, setCount] = useState(0)
-    const [edges, setEdges] = useState<EdgeData[]>([])
-    const [edgeCount, setEdgeCount] = useState(0)
-
+export const GraphEditor = ({
+    stageRef,
+    shapes, setShapes, count, setCount,
+    edges, setEdges, edgeCount, setEdgeCount,
+    zoom, setZoom,
+    stagePos, setStagePos,
+    setError
+}: IProps) => {
     const [menuSelected, setMenuSelected] = useState(0)
     const [addMatrixModal, setAddMatrixModal] = useState(false)
     const [importModal, setImportModal] = useState(false)
@@ -33,7 +47,6 @@ export const GraphEditor = ({ setError }: IProps) => {
     }
 
     // ZOOM LOGIC
-    const [zoom, setZoom] = useState(1)
     useEffect(() => {
         if (shapes[0]) {
             stageRef.current.position({ x: shapes[0].x, y: shapes[0].y })
@@ -137,6 +150,8 @@ export const GraphEditor = ({ setError }: IProps) => {
                 onClick={handleStageClick}
                 style={{ border: '1px solid black', background: '#fff', borderRadius: 20 }}
                 draggable={menuSelected === 2}
+                onDragEnd={(e: any) =>
+                    setStagePos({ x: e.target.x(), y: e.target.y() })}
             >
                 <Layer>
                     <Edges shapes={shapes} edges={edges} setContextMenu={setEdgeContextMenu} />

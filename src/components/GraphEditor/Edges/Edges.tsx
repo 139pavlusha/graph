@@ -84,6 +84,28 @@ export const Edges = ({ edges, shapes, setContextMenu }: IProps) => {
                                 verticalAlign='middle'
                             />
                         </Group>}
+                        {!!edge.fuzzy.length && <Group x={midX} y={midY}>
+                            <Rect
+                                x={-(labelWidth * 3) / 2}
+                                y={-labelHeight / 2}
+                                width={labelWidth * 3}
+                                height={labelHeight}
+                                fill='white'
+                                stroke="black"
+                                cornerRadius={4}
+                            />
+                            <Text
+                                x={-(labelWidth * 3) / 2}
+                                y={-labelHeight / 2}
+                                width={labelWidth * 3}
+                                height={labelHeight}
+                                text={`(${edge.fuzzy.join(', ')})`}
+                                fontSize={16}
+                                fill='black'
+                                align='center'
+                                verticalAlign='middle'
+                            />
+                        </Group>}
                     </Group>
                 )
             })}

@@ -1,0 +1,71 @@
+/* colour palette */
+:root {
+  --bg: #ffffff;
+  --border: #dcdfe6;
+  --row-even: #f9fafb;
+  --row-hover: #eef2ff;
+  --header-bg: #f1f5f9;
+  --header-text: #1e293b;
+}
+
+/* wrapper adds horizontal scroll on narrow screens */
+.matrixTable_scroll {
+  overflow-x: auto;
+  background: var(--bg);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  margin-bottom: 40px;
+}
+
+/* base table appearance */
+.matrixTable_table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Inter, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+/* header cells */
+.matrixTable_table thead th {
+  background: var(--header-bg);
+  color: var(--header-text);
+  font-weight: 600;
+  padding: 0.6rem 0.9rem;
+  text-align: center;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+/* body cells */
+.matrixTable_table td {
+  padding: 0.55rem 0.9rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* zebra striping */
+.matrixTable_table tbody tr:nth-child(even) {
+  background: var(--row-even);
+}
+
+/* hover effect for readability */
+.matrixTable_table tbody tr:hover {
+  background: var(--row-hover);
+  transition: background 0.15s ease;
+}
+
+/* smooth rounded corners */
+.matrixTable_table thead th:first-child {
+  border-top-left-radius: 0.75rem;
+}
+.matrixTable_table thead th:last-child {
+  border-top-right-radius: 0.75rem;
+}
+.matrixTable_table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 0.75rem;
+}
+.matrixTable_table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 0.75rem;
+}

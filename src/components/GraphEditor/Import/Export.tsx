@@ -44,12 +44,12 @@ export const Import = ({
                 setError('') // Clear any previous errors
                 onModalClose() // Close the modal
             } catch (err) {
-                setError('Invalid file format or content. Please upload a valid JSON file.')
+                setError('Неправильний формат або вміст файлу. Завантажте коректний файл JSON.')
             }
         }
 
         reader.onerror = () => {
-            setError('Failed to read the file. Please try again.')
+            setError('Не вдалося прочитати файл. Спробуйте ще раз.')
         }
 
         reader.readAsText(file)
@@ -57,7 +57,7 @@ export const Import = ({
     return (
         <Modal isOpen={openModal} onClose={onModalClose}>
             <div className="import-modal">
-                <h2>Import Graph from file</h2>
+                <h2>Імпортуйте граф з файлу</h2>
                 <input
                     type="file"
                     accept="application/json"

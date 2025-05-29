@@ -71,6 +71,7 @@ export const NodeContextMenu = ({
                                 from: i,
                                 to: j,
                                 orientation: false,
+                                fuzzy: [],
                                 weight: isWeight ? matrix[i][j] : null
                             })
                         }
@@ -80,6 +81,7 @@ export const NodeContextMenu = ({
                             from: i,
                             to: j,
                             orientation: true,
+                            fuzzy: [],
                             weight: isWeight ? matrix[i][j] : null
                         })
                     }
@@ -120,14 +122,15 @@ export const NodeContextMenu = ({
         setContextMenu(prev => ({ ...prev, visible: false }))
         setEdges(prev => prev.filter(s => s.from !== shapeId && s.to !== shapeId))
     }
+
     return (
         <>
             {contextMenu.visible && <div className="node-context" style={{ top: contextMenu.y, left: contextMenu.x }}>
                 <div className="node-context__button" onClick={() => handleChangeLabel(contextMenu.shapeId)}>
-                    Change Label
+                    Змінити назву
                 </div>
                 <div className="node-context__button node-context__button--last" onClick={() => handleDeleteNode(contextMenu.shapeId)}>
-                    Delete
+                    Видалити
                 </div>
             </div>}
             <Modal isOpen={labelModal} onClose={() => setLabelModal(false)}>
